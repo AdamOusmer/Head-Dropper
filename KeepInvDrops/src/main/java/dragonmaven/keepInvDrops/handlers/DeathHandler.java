@@ -1,15 +1,12 @@
 package dragonmaven.keepInvDrops.handlers;
 
-import dragonmaven.keepInvDrops.KeepInvDrops;
+import dragonmaven.keepInvDrops.HeadDropperMain;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -19,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class DeathHandler implements Listener {
 
-    public DeathHandler(KeepInvDrops plugin){
+    public DeathHandler(HeadDropperMain plugin){
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
 
