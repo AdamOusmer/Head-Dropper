@@ -1,0 +1,5 @@
+name: KeepInvDrops
+version: '${project.version}'
+main: dragonmaven.keepInvDrops.KeepInvDrops
+api-version: 1.19
+authors: [Dragonmaven]
