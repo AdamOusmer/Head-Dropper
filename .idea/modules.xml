@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Head Dropper.iml" filepath="$PROJECT_DIR$/.idea/Head Dropper.iml" />
       <module fileurl="file://$PROJECT_DIR$/KeepInvDrops/KeepInvDrops.iml" filepath="$PROJECT_DIR$/KeepInvDrops/KeepInvDrops.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/KeepInventory-Players-Head-Drops.iml" filepath="$PROJECT_DIR$/.idea/KeepInventory-Players-Head-Drops.iml" />
     </modules>
   </component>
 </project>
