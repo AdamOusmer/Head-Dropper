@@ -8,8 +8,18 @@ website: https://github.com/AdamOusmer
 commands:
   playerHead:
     description: Give a player head
-    permission: *
-  playerHead:permission:
-    description: Set permission for non-OP Players
-    permission: op
+    permission: headDropperMain.playerHead
 
+  playerHead_permission:
+    description: Set permission for non-OP Players
+    permission: headDropperMain.playerHead_permission
+
+default-permission-level: 4 # Set the default permission level to op
+
+permissions:
+  headDropperMain.playerHead:
+    description: Allows players to use the playerHead command
+    default: true
+  headDropperMain.playerHead_permission:
+    description: Allows OP players to set the playerHead permission for non-OP players
+    default: op

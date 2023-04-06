@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class playerHead implements CommandExecutor {
 
-    private boolean permission = false;
+
 
 
     public playerHead() {
@@ -30,7 +30,7 @@ public class playerHead implements CommandExecutor {
 
                 switch (strings.length) {
                     case 0:
-                        if (player.isOp() || permission) {
+                        if (player.isOp() || playerHead_permissions.permissions) {
                             giveOrDropItem(player, player);
                             player.sendMessage("You are receiving your own head.");
                             return false;
@@ -41,7 +41,7 @@ public class playerHead implements CommandExecutor {
 
 
                     case 1:
-                        if (player.isOp()) {
+                        if (player.isOp() || playerHead_permissions.permissions) {
                             giveOrDropItem(Objects.requireNonNull(Bukkit.getPlayerExact(strings[0])), player);
                             player.sendMessage("You are receiving the of " + strings[0]);
                             return false;
@@ -70,27 +70,6 @@ public class playerHead implements CommandExecutor {
             }
         }
 
-
-        if (label.equalsIgnoreCase("playerHead:permissions")) {
-            if (commandSender instanceof Player) {
-
-                if (strings[0].equalsIgnoreCase("true")) {
-                    this.permission = true;
-                    commandSender.sendMessage("Global permissions for Head Dropper as been enabled");
-
-                    return false;
-
-                } else if (strings[0].equalsIgnoreCase("false")) {
-
-                    this.permission = false;
-                    commandSender.sendMessage("Global permissions for Head Dropper as been disabled");
-                    return false;
-
-                }
-
-            }
-        }
-
         return true;
 
     }
@@ -114,13 +93,5 @@ public class playerHead implements CommandExecutor {
 
         }
         return false;
-    }
-
-    public boolean isPermission() {
-        return this.permission;
-    }
-
-    public void setPermission(boolean permission) {
-        this.permission = permission;
     }
 }
