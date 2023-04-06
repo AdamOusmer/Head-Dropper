@@ -116,7 +116,7 @@ public class playerHead implements CommandExecutor {
 
 
         }
-
+        return false;
     }
 
     public boolean isPermission() {
