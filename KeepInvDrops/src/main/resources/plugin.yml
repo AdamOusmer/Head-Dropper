@@ -3,3 +3,9 @@ version: '${project.version}'
 main: dragonmaven.keepInvDrops.HeadDropperMain
 api-version: 1.19
 authors: [Dragonmaven]
+website: https://github.com/AdamOusmer
+
+commands:
+  playerHead:
+    description: Give a player head
+
