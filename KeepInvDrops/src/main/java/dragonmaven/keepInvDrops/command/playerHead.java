@@ -1,6 +1,7 @@
 package dragonmaven.keepInvDrops.command;
 
 import dragonmaven.keepInvDrops.handlers.DeathHandler;
+import org.apache.commons.lang3.ObjectUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -98,16 +99,24 @@ public class playerHead implements CommandExecutor {
     }
 
 
-    private void giveOrDropItem(Player playerHead, Player playerReceiving) {
+    private boolean giveOrDropItem(Player playerHead, Player playerReceiving) {
+        try{
+            if (playerReceiving.getInventory().firstEmpty() != 1) {
+                playerReceiving.getInventory().addItem((Objects.requireNonNull(DeathHandler.getPlayerHead(playerHead))));
 
-        if (playerReceiving.getInventory().firstEmpty() != 1) {
-            playerReceiving.getInventory().addItem((Objects.requireNonNull(DeathHandler.getPlayerHead(playerHead))));
-            return;
+            }
+
+            Location l = playerReceiving.getLocation();
+
+            l.getWorld().dropItemNaturally(l.add(0.5, 0.5, 0.5), DeathHandler.getPlayerHead(playerHead));
+
+            return true;
+        }catch (Exception e){
+
+
+
         }
 
-        Location l = playerReceiving.getLocation();
-
-        l.getWorld().dropItemNaturally(l.add(0.5, 0.5, 0.5), DeathHandler.getPlayerHead(playerHead));
     }
 
     public boolean isPermission() {
