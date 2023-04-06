@@ -6,7 +6,9 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.MessageCommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -15,7 +17,7 @@ public class playerHead implements CommandExecutor {
     private boolean permission = false;
 
 
-    public playerHead(){
+    public playerHead() {
         super();
     }
 
@@ -28,35 +30,71 @@ public class playerHead implements CommandExecutor {
             if (commandSender instanceof Player) { // Check if command comes from console or player
                 Player player = (Player) commandSender;
 
-                if(player.isOp() || permission){
-
-                    switch (strings.length){
-                        case 0:
+                switch (strings.length) {
+                    case 0:
+                        if (player.isOp() || permission) {
                             giveOrDropItem(player, player);
+                            player.sendMessage("You are receiving your own head.");
                             return false;
-                        case 1:
-                            if(Bukkit.getPlayerExact(strings[0]) != null) {
-                                giveOrDropItem(Bukkit.getPlayerExact(strings[0]), player);
-                                return false;
-                            }
-                            return true;
-                        case 2:
-                            if((Bukkit.getPlayerExact(strings[0]) != null) ) {
-                                giveOrDropItem(Bukkit.getPlayerExact(strings[0]), Objects.requireNonNull(Bukkit.getPlayerExact(strings[1])));
-                                return false;
-                            }
-                             return false;
-                        default:
-                            return true;
-                    }
+                        }
 
+                        player.sendMessage("You don't have the permission to get your own head.");
+                        return true;
+
+
+                    case 1:
+                        if (player.isOp()) {
+                            giveOrDropItem(Objects.requireNonNull(Bukkit.getPlayerExact(strings[0])), player);
+                            player.sendMessage("You are receiving the of " + strings[0]);
+                            return false;
+                        }
+
+                        player.sendMessage("You don't have the permission to get a head.");
+                        return true;
+
+
+                    case 2:
+                        if(player.isOp()) {
+                            giveOrDropItem(Bukkit.getPlayerExact(strings[1]), Objects.requireNonNull(Bukkit.getPlayerExact(strings[0])));
+                            player.sendMessage("Giving " + strings[0] + "the head of " + strings[1]);
+                            Objects.requireNonNull(Bukkit.getPlayerExact(strings[0])).sendMessage("You receive the head of " + strings[1]);
+                            return false;
+                        }
+                        player.sendMessage("You don't have the permission to get a head.");
+                        return true;
+
+
+                    default:
+
+                        return true;
                 }
-                return true;
+
             }
         }
 
 
+        if (label.equalsIgnoreCase("playerHead:permissions")) {
+            if (commandSender instanceof Player) {
+
+                if (strings[0].equalsIgnoreCase("true")) {
+                    this.permission = true;
+                    commandSender.sendMessage("Global permissions for Head Dropper as been enabled");
+
+                    return false;
+
+                } else if (strings[0].equalsIgnoreCase("false")) {
+
+                    this.permission = false;
+                    commandSender.sendMessage("Global permissions for Head Dropper as been disabled");
+                    return false;
+
+                }
+
+            }
+        }
+
         return true;
+
     }
 
 
