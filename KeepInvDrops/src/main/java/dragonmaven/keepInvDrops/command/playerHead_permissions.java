@@ -44,10 +44,10 @@ public class playerHead_permissions implements CommandExecutor {
     }
 
     public boolean hasPermissions() {
-        return this.permissions;
+        return permissions;
     }
 
-    public void setPermissions(boolean permissions) {
-        this.permissions = permissions;
+    public void setPermissions(boolean permission) {
+        permissions = permission;
     }
 }
