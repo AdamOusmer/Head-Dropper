@@ -18,31 +18,6 @@ public final class HeadDropperMain extends JavaPlugin {
         Bukkit.getLogger().setLevel(Level.INFO);
 
         new DeathHandler(this);
-
-        Objects.requireNonNull(this.getCommand("playerHead")).setExecutor(new playerHead());
-        this.php = new playerHead_permissions();
-
-        Objects.requireNonNull(this.getCommand("playerHead_permission")).setExecutor((sender, command, label, args) -> {
-            if (args.length == 1 && args[0].equalsIgnoreCase("true")) {
-                php.setPermissions(true);
-                sender.sendMessage("Global permissions for Head Dropper have been enabled");
-
-                Bukkit.getLogger().info("Global permissions for Head Dropper have been enabled by " + sender.getName());
-
-                return true;
-
-            } else if (args.length == 1 && args[0].equalsIgnoreCase("false")) {
-                this.php.setPermissions(false);
-                sender.sendMessage("Global permissions for Head Dropper have been disabled");
-
-                Bukkit.getLogger().info("Global permissions for Head Dropper have been disabled by " + sender.getName());
-
-                return true;
-
-            }
-
-            return false;
-        });
     }
 
     @Override
